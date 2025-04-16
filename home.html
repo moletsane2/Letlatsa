@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kgadi Beauty | Treats & Thrifts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #fffbfb;
+      color: #000000;
+    }
+    header {
+      position: relative;
+      text-align: center;
+      padding: 2rem 1rem; /* Reduced padding for a sleeker look */
+      background: linear-gradient(135deg, #000, #1a1a1a); /* Black gradient background */
+      color: #fff; /* White text */
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.svgrepo.com/show/2046/wave.svg') repeat-x;
+      opacity: 0.1; /* Subtle wave effect */
+      z-index: 0;
+    }
+
+    .logo {
+      max-width: 150px; /* Smaller, modern logo size */
+      width: 90%;
+      margin: 0 auto;
+      display: block;
+      border-radius: 50%; /* Circular logo for a modern look */
+      border: 3px solid #d4af37; /* Gold border around the logo */
+      z-index: 1;
+      position: relative;
+    }
+
+    /* Gold strips radiating from the logo */
+    .logo::before,
+    .logo::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 200px;
+      height: 200px;
+      background: linear-gradient(to right, transparent, #d4af37, transparent);
+      transform: translate(-50%, -50%) rotate(45deg);
+      z-index: -1;
+      opacity: 0.5;
+    }
+
+    .logo::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; /* Slightly smaller font */
+      margin: 0.5rem 0;
+      color: #d4af37; /* Gold text for the title */
+      z-index: 1;
+      position: relative;
+    }
+
+    p {
+      font-size: 1.2rem; /* Slightly larger subtitle */
+      color: #ccc; /* Light gray for the subtitle */
+      max-width: 600px;
+      margin: 0.5rem auto;
+      z-index: 1;
+      position: relative;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background: linear-gradient(to right, #d4af37, transparent); /* Gold curvy strip */
+      clip-path: ellipse(50% 100% at 50% 100%);
+      z-index: 1;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #d4af37;
+    }
+    p {
+      font-size: 1.1rem;
+      color: #ccc;
+      max-width: 600px;
+      margin: 1rem auto;
+    }
+    section {
+      padding: 3rem 1rem;
+      background-color: #111;
+      text-align: center;
+    }
+    .btn {
+      padding: 0.8rem 2rem;
+      border: 2px solid #d4af37; /* Gold border */
+      background: transparent; /* Transparent background */
+      color: #d4af37; /* Gold text */
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .btn:hover {
+      background: #d4af37; /* Gold background on hover */
+      color: #000; /* Black text on hover */
+    }
+
+    .slideshow {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+    .slideshow img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .slideshow img.active {
+      opacity: 1;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 2rem auto;
+    }
+    .product {
+      background: #1a1a1a;
+      border-radius: 15px;
+      padding: 1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .product:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+    }
+    .product img {
+      width: 100%;
+      border-radius: 10px;
+      transition: transform 0.5s ease;
+    }
+    .product:hover img {
+      transform: scale(1.05);
+    }
+    .product h3 {
+      color: #d4af37;
+      margin-top: 1rem;
+    }
+    .product p {
+      color: #aaa;
+      font-size: 0.95rem;
+    }
+    footer {
+      background: #000; /* Black background */
+      color: #fff; /* White text */
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      border-top: 2px solid #d4af37; /* Gold border at the top */
+    }
+
+    footer p {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+      color: #ccc; /* Light gray text */
+    }
+
+    .footer-links {
+      margin: 1rem 0;
+    }
+
+    .footer-links a {
+      color: #d4af37; /* Gold links */
+      text-decoration: none;
+      margin: 0 0.5rem;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #fff; /* White on hover */
+    }
+
+    .social-icons {
+      margin-top: 1rem;
+    }
+
+    .social-icons img {
+      width: 30px;
+      margin: 0 0.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.2); /* Slight zoom on hover */
+    }
+
+    /* Modernized sliding contact info */
+    .contact-info {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, padding 0.5s ease; /* Smooth sliding effect */
+      background-color: #1a1a1a; /* Dark background to match the theme */
+      color: #fff; /* White text for contrast */
+      padding: 0 1rem;
+      margin-top: 1rem;
+      border: 1px solid #d4af37; /* Gold border */
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+      max-width: 600px; /* Center the content */
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center; /* Center-align the text */
+    }
+
+    .contact-info p {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+      color: #d4af37; /* Gold text for contact details */
+      text-align: justify; /* Justify the text for better readability */
+    }
+
+    .contact-info.show {
+      max-height: 300px; /* Adjust based on content height */
+      padding: 1rem; /* Add padding when visible */
+    }
+
+    .container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+
+
+    /*  Slideshow */
+    .nail-art-slideshow,
+    .Makeupkits-slideshow,
+    .Skincare-slideshow,
+    .Fragrance-slideshow,
+    .Hair-care-slideshow,
+    .Thrift-fashion-slideshow {
+      position: relative;
+      width: 100%;
+      height: 200px; /* Adjust height as needed */
+      overflow: hidden;
+      border-radius: 10px;
+      display: flex; /* Use flexbox for centering */
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+    }
+
+    .nail-art-slideshow img, 
+    .Makeupkits-slideshow img,
+    .Skincare-slideshow img,
+    .Fragrance-slideshow img,
+    .Hair-care-slideshow img,
+    .Thrift-fashion-slideshow img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Ensures the image fills the container without distortion */
+      opacity: 0;
+      transition: opacity 1s ease-in-out; /* Smooth fade transition */
+    }
+
+    .nail-art-slideshow img.active, 
+    .Makeupkits-slideshow img.active1,
+    .Skincare-slideshow img.active2 ,
+    .Fragrance-slideshow img.active2,
+    .Hair-care-slideshow img.active2,
+    .Thrift-fashion-slideshow img.active2 {
+      opacity: 1; /* Show the active image */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="IMG-20250321-WA0004.jpg" alt="Kgadi Beauty Logo" class="logo" />
+    <h1>Kgadi Beauty</h1>
+    <p>Treats & Thrifts | Beauty, Elegance, and Affordable Luxury</p>
+  </header>
+
+ 
+
+  <section>
+    <h2>Our Beauty Treats & Thrifts</h2>
+    <div class="products">
+      <div class="product">
+        <div class="nail-art-slideshow">
+          <img src="https://i.pinimg.com/736x/56/ff/0d/56ff0d0d749d300a87926c50ca9d244a.jpg" alt="Nail Art 1" class="active" />
+          <img src="https://i.pinimg.com/736x/e8/2b/f8/e82bf8330780ccade6bc3d37d7bc05bc.jpg" alt="Nail Art 2" />
+          <img src="https://i.pinimg.com/736x/6b/74/06/6b740657ea750a4015fefc72afcaaa52.jpg" alt="Nail Art 3" />
+          <img src="https://i.pinimg.com/736x/c4/4f/c9/c44fc9df8d3a716e898b7e21967de2e6.jpg" alt="Nail Art 4" />
+        </div>
+        <h3>Nail Art</h3>
+        <p>Stylish, custom-designed nail art to make your hands pop with elegance.</p>
+      </div>
+      <div class="product">
+        <div class="Makeupkits-slideshow">
+          <img src="https://i.pinimg.com/736x/87/3a/bb/873abb1947c40f5b680e454ff91054fd.jpg" alt="Makeup art 1"  />
+          <img src="https://i.pinimg.com/736x/e3/70/b7/e370b753c07a9ad8912ae7774cf6db3d.jpg" alt="Makeup art 2" class="active1" />
+          <img src="https://i.pinimg.com/736x/04/9b/c9/049bc92e309636f687e00558d858bce8.jpg" alt="Makeup art 3" />
+          <img src="https://i.pinimg.com/736x/5a/14/39/5a1439fccf44f75fdeb8278bee24d725.jpg" alt="Makeup art 4" />
+        </div>
+        <h3>Makeup Kits</h3>
+        <p>High-quality makeup products for every skin tone and look you desire.</p>
+      </div>
+      <div class="product">
+        <div class="Skincare-slideshow">
+          <img src="https://i.pinimg.com/736x/18/ae/64/18ae64917f1af7479df8605a42f6aff9.jpg" alt="Skincare 1" class="active2" />
+          <img src="https://i.pinimg.com/736x/62/e6/11/62e6113b7baa38b4570dcc2336949fa1.jpg" alt="Skincare 2" />
+          <img src="https://i.pinimg.com/736x/ad/aa/e0/adaae0cc46a19914e41c6d49700c2c26.jpg" alt="Skincare 3" />
+          <img src="https://i.pinimg.com/736x/f4/13/5d/f4135d3308e03432939a577a4093b99c.jpg" alt="Skincare 4" />
+        </div>
+        <h3>Skincare</h3>
+        <p>Pamper your skin with our natural and rejuvenating skincare products.</p>
+      </div>
+      <div class="product">
+        <div class="Fragrance-slideshow">
+          <img src="https://i.pinimg.com/736x/28/de/6c/28de6c86300c0bfa69950872a3664321.jpg" alt="Fragrance 1" class="active2" />
+          <img src="https://i.pinimg.com/736x/b8/1e/01/b81e01beb7e53ce03765a3dcae06ae42.jpg" alt="Fragrance 2" />
+          <img src="https://i.pinimg.com/736x/33/9c/29/339c29dae26f8b8ebf8ae0d10b7bee2a.jpg" alt="Fragrance 3" />
+          <img src="https://i.pinimg.com/736x/33/ac/2a/33ac2a5c3c7b717417753146f9bb013b.jpg" alt="Fragrance 4" />
+        </div>
+        <h3>Fragrances</h3>
+        <p>Signature scents that leave a lasting impression wherever you go.</p>
+      </div>
+      <div class="product">
+        <div class="Hair-care-slideshow">
+          <img src="https://i.pinimg.com/736x/ca/24/62/ca246209b590ec98acd08a013b353aaa.jpg" alt="Hair-care 1" class="active2" />
+          <img src="https://i.pinimg.com/736x/11/21/e7/1121e70c77b412124e8e3e4adb68b70f.jpg" alt="Hair-care 2" />
+          <img src="https://i.pinimg.com/736x/cc/8f/2e/cc8f2e3b1d099dbbd782688c028ea22b.jpg" alt="Hair-care 3" />
+          <img src="https://i.pinimg.com/736x/09/17/27/091727c59902ec3dbf012a8a4e4377b4.jpg" alt="Hair-care 4" />
+        </div>
+        <h3>Hair Care</h3>
+        <p>Nourishing products and treatments to keep your hair healthy and shiny.</p>
+      </div>
+      <div class="product">
+        <div class="Thrift-fashion-slideshow">
+          <img src="https://i.pinimg.com/736x/56/62/77/56627772b613e8413be08e93f218ace5.jpg" alt="Thrift 1" class="active2" />
+          <img src="https://i.pinimg.com/736x/6f/46/0b/6f460bc0ba9695c8bd161c767c3fae70.jpg" alt="Thrift 2" />
+          <img src="https://i.pinimg.com/736x/ea/99/48/ea994816211ec2b1c4f2149eb57f2edd.jpg" alt="Thrift 3" />
+          <img src="https://i.pinimg.com/736x/9e/64/57/9e6457b0e24ea3fbc69e2bc437ea5095.jpg" alt="Thrift 4" />
+        </div>
+        <h3>Thrift Fashion</h3>
+        <p>Trendy and affordable pre-loved fashion pieces for every style.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Discover Our Collections</h2>
+    <p>From beauty products to exclusive thrifts, Kgadi Beauty brings you premium treats at affordable prices.</p>
+    <button class="btn" onclick="toggleContact()">Contact Us</button>
+    <div class="contact-info" id="contactInfo">
+      <p><strong>Call/WhatsApp:</strong> +266 57401714</p>
+      <p><strong>Facebook:</strong> @Kgadi Beauty</p>
+      <p><strong>Email:</strong> Kgalibeauty.treats@gmail.com</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Kgadi Beauty | All Rights Reserved</p>
+    <div class="footer-links">
+      <a href="#about">About Us</a>
+      <a href="#products">Products</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="social-icons">
+      <a href="https://facebook.com" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+      </a>
+      <a href="https://instagram.com" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram">
+      </a>
+      <a href="https://twitter.com" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter">
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    function toggleContact() {
+      const contactInfo = document.getElementById('contactInfo');
+      contactInfo.classList.toggle('show'); // Toggle the 'show' class
+    }
+
+    // Generalized Slideshow Logic
+    function startSlideshow(slideshowClass, activeClass, interval = 3000) {
+      const slides = document.querySelectorAll(`.${slideshowClass} img`);
+      let slideIndex = 0;
+
+      function showSlides() {
+        slides.forEach((slide) => {
+          slide.style.opacity = '0'; // Hide all slides
+          slide.classList.remove(activeClass);
+        });
+
+        slideIndex++;
+        if (slideIndex > slides.length) {
+          slideIndex = 1; // Reset to the first slide
+        }
+
+        slides[slideIndex - 1].style.opacity = '1'; // Show the current slide
+        slides[slideIndex - 1].classList.add(activeClass);
+
+        setTimeout(showSlides, interval); // Change slide every interval
+      }
+
+      showSlides(); // Start the slideshow
+    }
+
+    // Start Nail Art Slideshow
+    startSlideshow('nail-art-slideshow', 'active');
+
+    // Start Makeup Kits Slideshow
+    startSlideshow('Makeupkits-slideshow', 'active1');
+
+    // Start Skincare Slideshow
+    startSlideshow('Skincare-slideshow', 'active2');
+
+    // Start Fragrance Slideshow
+    startSlideshow('Fragrance-slideshow', 'active2');
+
+    // Start Hair Care Slideshow
+    startSlideshow('Hair-care-slideshow', 'active2');
+
+    // Start Thrift Fashion Slideshow
+    startSlideshow('Thrift-fashion-slideshow', 'active2');
+  </script>
+</body>
+</html>
